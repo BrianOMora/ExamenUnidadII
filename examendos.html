@@ -1,5 +1,5 @@
 <script>
-  var reservasion = [];
+    var reservasion = [];
     var fechareserva = [];
     var mesa=[];
     var registro = [];
@@ -51,8 +51,8 @@ function regisasis(){
     for(let i=0; i < reservasion.length; i++){
         for(let j = 0; j < fechareserva.length; j++){
             if( reservasion[i] === busca_nombre && fechareserva[j] === busca_fecha){
-                let num_mesa = Math.floor(Math.random() * (6 - 1)) + 1;
                 for(let a = 0; a < mesa.length; a++){
+                    let num_mesa = Math.floor(Math.random() * (6 - 1)) + 1;
                     if(mesa[i] != num_mesa){
                     mesa[i] = "Mesa " + (num_mesa);
                     }
