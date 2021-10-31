@@ -1,0 +1,87 @@
+<script>
+  var reservasion = [];
+    var fechareserva = [];
+    var mesa=[];
+    var registro = [];
+        do {
+            var opcion = parseInt(prompt("Que desea Realizar\n1.-Registrar Reservasion\n2.-Registrar asistencias\n3.-Buscar Mesas Ocupadas por fecha\n4.-Salir"));
+
+            switch (opcion) {
+                case 1:
+                    var reservasiones = prompt("Ingresa la cantidad de mesas a reservar");
+                    registrar();
+                    break;
+                case 2:
+                    regisasis();        
+                break;
+                case 3:
+                    buscar();
+                break;
+                }
+        } while (opcion != 4);
+
+
+function registrar() {
+
+    for(let i = 0; i < reservasiones; i++){
+        let nombre = prompt("Ingresa el nombre de quien reserva");
+        let fecha = parseInt(prompt("Ingresa la fecha: "));
+        let contador = 0;
+        mesa.push("reservada");
+        reservasion.push(nombre);
+        fechareserva.push(fecha);
+        for(let i = 0; i < fechareserva.length; i++){
+            if(fechareserva[i] === fecha ){
+                contador++;
+            }
+        }
+        if(contador > 6){
+                    alert("Esa fecha ya esta llena, porfavor reserve otra");
+                    reservasion.pop(nombre);
+                    fechareserva.pop(fecha);
+                    mesa.pop(mesa);
+                }
+            }
+        }
+
+function regisasis(){
+    let busca_nombre = prompt("Ingresa el nombre de quien reserva");
+    let busca_fecha = parseInt(prompt("Ingresa la fecha: "));
+    let contador = 0;
+    for(let i=0; i < reservasion.length; i++){
+        contador++;
+        for(let j = 0; j < fechareserva.length; j++){
+            if( reservasion[i] === busca_nombre && fechareserva[j] === busca_fecha){
+                mesa[i] = "Mesa " + (contador);
+            }
+            if(reservasion[i] !== busca_nombre || fechareserva[j] !== busca_fecha){
+                alert("Usted no tiene una reservasion")
+            }
+        }
+    }
+}
+
+function buscar() {
+    var fechabusqueda = parseInt(prompt("Ingrese la fecha"))
+    let contador = 0;
+    let list_reservasicones = "";
+    for(let i = 0; i < fechareserva.length; i++){
+        if(fechareserva[i] === fechabusqueda){
+            contador++;
+            if(mesa[i] === "reservada"){
+                list_reservasicones += reservasion[i] + " tiene una reservacion para la fecha " + fechareserva[i] + " tinene una mesa " + mesa[i] + "\n";
+            }else{
+                list_reservasicones += reservasion[i] + " tiene una reservacion para la fecha " + fechareserva[i] + " Su mesa es la: " + mesa[i] + "\n";
+            }
+        }
+    }  
+
+    let mesasrestantes = 6 - contador;
+    
+    if (contador < 6) {
+        alert(list_reservasicones + "Hay " + mesasrestantes + " mesas restantes para esa fecha");
+    }else{
+        alert("No hay mesas disponibles");
+    }
+}
+</script>
