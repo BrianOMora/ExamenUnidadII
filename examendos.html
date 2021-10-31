@@ -49,13 +49,14 @@ function regisasis(){
     let busca_fecha = parseInt(prompt("Ingresa la fecha: "));
     let contador = 0;
     for(let i=0; i < reservasion.length; i++){
-        contador++;
         for(let j = 0; j < fechareserva.length; j++){
             if( reservasion[i] === busca_nombre && fechareserva[j] === busca_fecha){
-                mesa[i] = "Mesa " + (contador);
-            }
-            if(reservasion[i] !== busca_nombre || fechareserva[j] !== busca_fecha){
-                alert("Usted no tiene una reservasion")
+                let num_mesa = Math.floor(Math.random() * (6 - 1)) + 1;
+                for(let a = 0; a < mesa.length; a++){
+                    if(mesa[i] != num_mesa){
+                    mesa[i] = "Mesa " + (num_mesa);
+                    }
+                }
             }
         }
     }
